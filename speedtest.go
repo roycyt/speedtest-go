@@ -1,10 +1,9 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
-
-	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 func checkError(err error) {
@@ -14,25 +13,17 @@ func checkError(err error) {
 	}
 }
 
-func setTimeout() {
-	if *timeoutOpt != 0 {
-		timeout = *timeoutOpt
-	}
-}
-
 var (
-	showList   = kingpin.Flag("list", "Show available speedtest.net servers").Short('l').Bool()
-	serverIds  = kingpin.Flag("server", "Select server id to speedtest").Short('s').Ints()
-	timeoutOpt = kingpin.Flag("timeout", "Define timeout seconds. Default: 10 sec").Short('t').Int()
-	timeout    = 10
+	showList = flag.Bool("list", false, "Show available speedtest.net servers.")
+	serverID ServerIDList
 )
 
+func init() {
+	flag.Var(&serverID, "server", "Select servers to speedtest. List the server ID separated by comma.")
+	flag.Parse()
+}
+
 func main() {
-	kingpin.Version("1.0.3")
-	kingpin.Parse()
-
-	setTimeout()
-
 	user := fetchUserInfo()
 	user.Show()
 
@@ -42,7 +33,7 @@ func main() {
 		return
 	}
 
-	targets := list.FindServer(*serverIds)
+	targets := list.FindServer(serverID)
 	targets.StartTest()
 	targets.ShowResult()
 }

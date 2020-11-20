@@ -1,38 +1,22 @@
 # speedtest-go
+
 Command Line Interface to Test Internet Speed using [speedtest.net](http://www.speedtest.net/).  
 You can speedtest 2x faster than [speedtest.net](http://www.speedtest.net/); nevertheless results are almost the same.  [see experimental results](https://github.com/showwin/speedtest-go#summary-of-experimental-results).
 
 Inspired by [sivel/speedtest-cli](https://github.com/sivel/speedtest-cli)
 
-## Installation
-### OS X (homebrew)
-```
-$ brew tap showwin/speedtest
-$ brew install speedtest
-
-### How to Update ###
-$ brew update
-$ brew upgrade speedtest
-```
-
-### Others (Linux, Windows, etc.)
-Please download compatible package from [Releases](https://github.com/showwin/speedtest-go/releases).  
-If there are no compatible package you want, please let me know by [issues](https://github.com/showwin/speedtest-go/issues).
-
 ## Usage
-```
-$ speedtest --help
-usage: download [<flags>]
 
-Flags:
-      --help             Show context-sensitive help (also try --help-long and --help-man).
-  -l, --list             Show available speedtest.net servers
-  -s, --server=SERVER    Select server id to speedtest
-  -t, --timeout=TIMEOUT  Define timeout seconds. Default: 10 sec
-      --version          Show application version.
+```
+$ speedtest -h
+  -list
+        Show available speedtest.net servers.
+  -server value
+        Select servers to speedtest. List the server ID separated by comma.
 ```
 
 #### Select Closest Server by Default
+
 ```
 $ speedtest
 Testing From IP: 124.27.199.165 (Fujitsu) [34.9769, 138.3831]
@@ -47,8 +31,9 @@ Upload: 35.26 Mbit/s
 ```
 
 #### Show Available Servers
+
 ```
-$ speedtest --list
+$ speedtest -list
 Testing From IP: 124.27.199.165 (Fujitsu) [34.9769, 138.3831]
 [6691]     9.03km Shizuoka (Japan) by sudosan
 [6087]   120.55km Fussa-shi (Japan) by Allied Telesis Capital Corporation
@@ -65,8 +50,9 @@ Testing From IP: 124.27.199.165 (Fujitsu) [34.9769, 138.3831]
 ```
 
 #### Select Multiple Servers by Server ID
+
 ```
-$ speedtest --server 6691 --server 6087
+$ speedtest -server 6691,6087
 Testing From IP: 124.27.199.165 (Fujitsu) [34.9769, 138.3831]
 
 Target Server: [6691]     9.03km Shizuoka (Japan) by sudosan
