@@ -177,7 +177,7 @@ func pingTest(sURL string) time.Duration {
 	l := time.Duration(100000000000) // 10sec
 	for i := 0; i < 3; i++ {
 		sTime := time.Now()
-		resp, err := http.Get(pingURL)
+		resp, err := httpGet(pingURL)
 		fTime := time.Now()
 		checkError(err)
 		defer resp.Body.Close()

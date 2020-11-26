@@ -9,6 +9,8 @@ Inspired by [sivel/speedtest-cli](https://github.com/sivel/speedtest-cli)
 
 ```
 $ speedtest -h
+  -insecure
+        Skip server certificate verification.
   -list
         Show available speedtest.net servers.
   -server value
